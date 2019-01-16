@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Switch,Route} from "react-router-dom"
+import {Switch,Route,Redirect} from "react-router-dom"
 import HomeSection from './Home';
 import EventSection from './Event';
 import BookingSection from './Booking';
@@ -12,12 +12,14 @@ export default class Main extends Component {
     return (
       <div>
           <Switch>
-            <Route path="/home" component={HomeSection}/>
-            <Route path="/events" component={EventSection}/>
-            <Route path="/booking" component={BookingSection}/>
-            <Route path="/locateus" component={LocateSection}/>
+            <Route exact path="/" component={()=>{
+              return <Redirect to="/home"/>
+            }}/>
+            <Route exact path="/home" component={HomeSection}/>
+            <Route exact path="/events" component={EventSection}/>
+            <Route exact path="/booking" component={BookingSection}/>
+            <Route exact path="/locateus" component={LocateSection}/>
             <Route path="*" component={Page404}/>
-
           </Switch>
       </div>
     )

@@ -10,8 +10,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route exact path="/admin" component={()=>{return <Admin/>}}/>
-            <Route path="/" component={()=>{return <Main/>}}/>
+            <Route path="/admin" component={Admin}/>
+            <Route path="/" component={Main}/>
           </Switch>        
         </div>
       </Router>
