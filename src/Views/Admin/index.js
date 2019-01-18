@@ -25,6 +25,9 @@ class Admin extends Component {
             <div className="col-lg-10 adminPagePanel pr-3 pl-3 pt-2 pb-2">
               <div className="card" style={{minHeight:"100%",border:"none"}}>
                 <Switch>
+                  <Route exact path={`${matchPath}/`} component={()=>{
+                    return <Redirect to={`${matchPath}/bookings`}/>
+                  }}/>
                   <Route path={`${matchPath}/bookings`} component={Booking}/>
                   <Route path={`${matchPath}/rooms`} component={Rooms}/>
                   <Route path={`${matchPath}/events`} component={Events}/>

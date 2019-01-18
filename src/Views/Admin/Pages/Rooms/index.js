@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import {Switch,Redirect,Route} from "react-router-dom"
 import ReactTable from "react-table"
-import {getAllRooms,getAllRoomTypes,addRoom,addRoomType} from "../../../../Utils/apis"
+import {getAllRooms,getAllRoomTypes,addRoom,addRoomType,getRoomCategories} from "../../../../Utils/apis"
 import Modal from "../../../../Components/Modal.js"
 import { Formik} from 'formik';
 import * as Yup from 'yup'
 import Select from "react-select"
 import {addNotifications} from "../../../../Actions/notificationActions"
-import DateTime from "react-datetime"
 import {connect} from "react-redux"
 
 let mapDispatchToProps=(dispatch)=>{
@@ -23,9 +22,9 @@ let RoomStatus=(props)=>{
   return(
     <span>
       <span style={{
-        color: status === 'booked' ? 'teal'
-          : status === 'available' ? 'green'
-          :status==="maintenance"?'brown':"",
+        color: status === 'booked' ? 'brown'
+          : status === 'available' ? 'teal'
+          :status==="maintenance"?'grey':"",
         transition: 'all .3s ease'
       }}>
         &#x25cf;
@@ -57,7 +56,10 @@ class RoomList extends Component {
         {
           Header: "Room Type",
           accessor: "room_type",
-          filterable:true
+          filterable:true,
+          Cell:({original})=>{
+            return <div>{`${original.room_category_name} - ${original.room_type}(${original.quantity})`}</div>
+          }
         },
         {
           Header: "Room Price",
@@ -82,13 +84,21 @@ class RoomList extends Component {
         {
           Header: "Name",
           accessor:"name",
-          width:400,
+          filterable:true
+        },
+        {
+          Header: "Category",
+          accessor:"room_category_name",
+          filterable:true
+        },
+        {
+          Header: "Quantity",
+          accessor:"quantity",
           filterable:true
         },
         {
           Header: "Price",
           accessor: "price_per_night",
-          width:250,
           filterable:true,
         },
         {
@@ -164,7 +174,7 @@ class AddRoomForm extends React.Component{
           }
           catch(err){
             this.props.hideLoader()
-            this.props.addNotifications([{message:"Room number is already taken"}])
+            this.props.addNotifications([{message:"Room number is already taken",color:"danger"}])
           }
         }}
         validationSchema={validationSchema}
@@ -209,12 +219,29 @@ let AddRoomFormExtended=connect(()=>{return {}},mapDispatchToProps)(AddRoomForm)
 
 
 class AddRoomTypeForm extends React.Component{
+  state={roomsCategoryData:[]}
+
+  componentWillMount=async ()=>{
+    try{
+      let {data}=await getRoomCategories()
+      let roomsCategoryData=data.map(d=>{
+        return {label:d.name,value:d.name}
+      })
+      this.setState({roomsCategoryData})
+    }
+    catch(err){
+
+    }
+  }
+
   render(){
     
     const validationSchema = Yup.object().shape({
       name: Yup.string().required().label("Name"),
       description:Yup.string().required().label("Description"),
-      price_per_night:Yup.number().positive("It must be positive").integer("It must be integer").required().label("Price")
+      room_category_name:Yup.string().required().label("Category"),
+      price_per_night:Yup.number().positive("It must be positive").integer("It must be integer").required().label("Price"),
+      quantity:Yup.number().positive("It must be positive").integer("It must be integer").required().label("quantity"),
     })
 
     return(
@@ -230,7 +257,7 @@ class AddRoomTypeForm extends React.Component{
           }
           catch(err){
             this.props.hideLoader()
-            this.props.addNotifications([{message:"Please check your fields!"}])
+            this.props.addNotifications([{message:"Please check your fields!",color:"danger"}])
           }
         }}
         validationSchema={validationSchema}
@@ -241,6 +268,21 @@ class AddRoomTypeForm extends React.Component{
                   <label>Room Type Name:</label>
                   <input type="text" name="name" class="form-control" placeholder="Enter Name" onChange={handleChange} />
                   {errors.name && <small className="text-warning">{errors.name}</small>}
+                </div>
+                <div className="form-group">
+                  <label>Category:</label>
+                  <Select
+                    name="room_category_name"
+                    options={this.state.roomsCategoryData || []}
+                    onChange={(data)=>{setFieldValue("room_category_name",data.value)}}
+                    isClearable={false}
+                  />
+                  {errors.room_category_name && <small className="text-warning">{errors.room_category_name}</small>}
+                </div>
+                <div className="form-group">
+                  <label>Number of people:</label>
+                  <input type="text" name="quantity" class="form-control" placeholder="Enter quantity" onChange={handleChange} />
+                  {errors.quantity && <small className="text-warning">{errors.quantity}</small>}
                 </div>
                 <div className="form-group">
                   <label>Description:</label>
@@ -290,7 +332,7 @@ class RoomManage extends Component {
       let {data}=await getAllRoomTypes()
 
       let roomTypesData=data.map((data)=>{
-        return {label:data.name,value:data.id}
+        return {label:`${data.room_category_name} - ${data.name} (${data.quantity})`,value:data.id}
       })
 
       console.log(roomTypesData)
@@ -300,7 +342,6 @@ class RoomManage extends Component {
       })
     }
     catch(err){
-      console.log(err)
     }
 
   }
@@ -342,6 +383,9 @@ export default class Rooms extends Component {
         <Switch>
           <Route path={`${matchPath}/list`} component={RoomList}/>
           <Route path={`${matchPath}/manage`} component={RoomManage}/>
+          <Route exact path={`${matchPath}/`} component={()=>{
+            return <Redirect to={`${matchPath}/list`}/>
+          }}/>
         </Switch>
     )
   }

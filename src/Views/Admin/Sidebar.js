@@ -52,6 +52,8 @@ class MainItem extends Component{
     }
   }
 
+  
+
   onHover=(type,e)=>{
 
     if(type=="in"){
@@ -130,9 +132,15 @@ class Sidebar extends Component{
     let sidebarItems=routes.map((routeData,i)=>{
 
       let isLinkActive=false
+
       if(routeData.name===this.props.appState.currentActiveMenu){
         isLinkActive=true
       }
+
+      if(location.pathname.indexOf(routeData.link)===0){
+        isLinkActive=true
+      }
+      
       return(<MainItem key={i} isActive={isLinkActive} pathname={location.pathname} activeMenuName={this.props.appState.currentActiveMenu} setCurrentMenu={this.props.setCurrentMenu} routeData={routeData}/>)
     })
 

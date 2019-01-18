@@ -118,6 +118,7 @@ class AddEventForm extends React.Component{
             resetForm()
           }
           catch(err){
+            console.log(err)
             this.props.hideLoader()
             this.props.addNotifications([{message:"Please check your fields!",color:"danger"}])
           }
@@ -192,7 +193,7 @@ class AddEventForm extends React.Component{
             <hr className="date"/>
             <div className="adminFormFooter">                  
                   <div className="d-flex justify-content-center">
-                    <button type="submit" onClick={e=>{console.log("asdasd"); handleSubmit(e)}} className="btn btn-info">
+                    <button type="submit" onClick={e=>{handleSubmit(e)}} className="btn btn-info">
                       Add
                     </button>
                     <button className="ml-3 btn btn-danger" type="button" onClick={this.props.toggle}>
@@ -234,7 +235,6 @@ class EventManage extends Component {
               <br/>
               <button type="button" onClick={()=>{this.setState({showAddEvent:true})}} className="btn btn-info adminButton ml-3"><i className="fas fa-plus pr-2"></i>Add Event</button>
             </div>
-
             <Modal title="Add Event" data={{}} className="adminForm" isOpen={this.state.showAddEvent} toggle={()=>{this.setState({showAddEvent:!this.state.showAddEvent})}}>
               <AddEventFormExtended/>
             </Modal>
@@ -253,6 +253,9 @@ export default class Events extends Component {
         <Switch>
           <Route path={`${matchPath}/list`} component={EventList}/>
           <Route path={`${matchPath}/add`} component={EventManage}/>
+          <Route exact path={`${matchPath}/`} component={()=>{
+            return <Redirect to={`${matchPath}/list`}/>
+          }}/>
         </Switch>
     )
   }

@@ -16,6 +16,11 @@ export const addRoom= async function(data){
     return axios.post(url,data)
 }
 
+export const updateRoom=async function(data){
+    let url=endpoint+"/update/room"
+    return axios.post(url,data)
+}
+
 export const addRoomType= async function(data){
     let url=endpoint+"/rooms/add/roomtype"
     return axios.post(url,data)
@@ -45,6 +50,22 @@ export const updateBooking= async function(data){
     let url=endpoint+"/bookings/update"
     return axios.post(url,data)
 }
+
+export const getRoomsByType= async function(data){
+    let url=endpoint+"/rooms/search/roomtypeid"
+    return axios.post(url,data)
+}
+
+export const getRoomCategories= async function(data){
+    let url=endpoint+"/rooms/getRoomCategories"
+    return axios.get(url)
+}
+
+export const getRoomTypeFromCategory= async function(data){
+    let url=endpoint+"/rooms/getRoomTypesByCategory"
+    return axios.post(url,data)
+}
+
 
 
 
