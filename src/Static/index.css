@@ -134,3 +134,20 @@
     background-color: rgb(232, 232, 233);
     cursor: pointer;
   }
+
+.login-main{
+    height: 100vh;
+    background-color: #7d8ca3;
+}
+
+.login-portal{
+    padding: 0;
+    overflow: hidden;
+}
+
+.login-header{
+    background-color: #424F63;
+    color:white;
+    text-align: center;
+    font-size: 18px;
+}

@@ -136,10 +136,6 @@ class Sidebar extends Component{
       if(routeData.name===this.props.appState.currentActiveMenu){
         isLinkActive=true
       }
-
-      if(location.pathname.indexOf(routeData.link)===0){
-        isLinkActive=true
-      }
       
       return(<MainItem key={i} isActive={isLinkActive} pathname={location.pathname} activeMenuName={this.props.appState.currentActiveMenu} setCurrentMenu={this.props.setCurrentMenu} routeData={routeData}/>)
     })
@@ -223,4 +219,5 @@ const Styles={
     fontSize:"10px"
   }
 }
+
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Sidebar))

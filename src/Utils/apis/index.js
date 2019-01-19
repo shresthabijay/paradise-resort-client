@@ -1,5 +1,11 @@
 import axios from "axios"
-const endpoint="http://localhost:7000"
+const endpoint=""
+
+let token=sessionStorage.getItem("paradise-admin-token")
+
+if(token){
+    axios.defaults.headers.common['x-access-token']=token
+}
 
 export const getAllRooms= async function(){
     let url=endpoint+"/rooms/get/roomdata"
@@ -65,6 +71,23 @@ export const getRoomTypeFromCategory= async function(data){
     let url=endpoint+"/rooms/getRoomTypesByCategory"
     return axios.post(url,data)
 }
+
+export const authenticateAdmin= async function(token){
+    let url=endpoint+"/authenticate/admin"
+    return axios.post(url,{},{
+        headers:{
+            "x-access-token":token
+        }
+    })
+}
+
+export const adminLogin= async function(data){
+    let url=endpoint+"/authenticate/login"
+    return axios.post(url,data)
+}
+
+
+
 
 
 

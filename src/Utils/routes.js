@@ -54,6 +54,18 @@ const routes=[
         icon:"fas fa-plus"
       },
     ]
+  },
+  {
+    name:"Settings",
+    link:"/admin/setting",
+    icon:"fas fa-cog",
+    subItems:[
+      {
+        name:"User",
+        link:"/admin/setting/user",
+        icon:"fas fa-user"
+      },
+    ]
   }
 ]
 
