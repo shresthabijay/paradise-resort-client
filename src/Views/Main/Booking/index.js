@@ -1,26 +1,15 @@
 import React, { Component } from 'react'
-import KahltiWidget from "../../../Components/Khalti.js"
-
-export default class BookingSection extends Component {
+import BookingSection from "./BookingSection"
+import {Switch,Route} from "react-router-dom"
+import PayementSection from './PayementSection';
+export default class Booking extends Component {
   render() {
+    let matchPath=this.props.match.path
     return (
-      <div>
-        <KahltiWidget
-          amount={10000} //in paisa
-          productName="Deluxe Hotel Room"
-          productIdentity={1}
-          productUrl="www.paradise.com"
-          onSuccess={(payload)=>{
-            console.log(payload)
-          }}
-          onError={(err)=>{
-            console.log(err)
-          }}
-          onClose={()=>{
-            console.log("Its Closing!")
-          }}
-        />
-      </div>
+    <Switch>
+      <Route exact path={`${matchPath}/`} component={BookingSection}/>
+      <Route path={`${matchPath}/payment`} component={PayementSection}/>      
+    </Switch>
     )
   }
 }

@@ -9,7 +9,6 @@ import {withRouter} from "react-router-dom"
 import NotificationPanel from "../../Components/Notifcation"
 import {addNotifications} from "../../Actions/notificationActions"
 import {connect} from "react-redux"
-import Authentication from '../../Components/Authentication';
 import Setting from './Pages/Setting';
 
 

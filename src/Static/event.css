@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+@import url('https://fonts.googleapis.com/css?family=Charm');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+.card1{
+    padding: 15px; 
+}
+
+*{
+  font-family: 'Oxygen', sans-serif;
+  
+}
+body{
+  overflow-x: hidden;
+}
+.event-data{
+  transform: translateY(0px);
+  transition: all 0.3s ease-in-out;
+}
+.event-data:hover{
+  cursor: pointer;
+  transform: translateY(-2px);
+  transition: all 0.3s ease-in-out;
+}
+
+.quote p{
+  font-family: 'Charm', cursive;
+}
+.grid h1{
+  font-family: 'Charm', cursive;
+  text-align: center;
+   background-color: teal;
+  color: #fff;
+  
+}
+.grid .btn{
+  margin:15px;
+
+}
+.bg-wrapper{
+    height:100vh;
+    /* width: 100%; */
+    background-image: url('../assets/image1.jpg');
+    background-size: cover;
+    background-attachment: fixed;  
+    background-position: center;
+
+  }
+  .custom1{
+    opacity: 0.9;
+    transition:  all 1.2s ease-in-out;
+  }
+  .custom{
+    opacity: 1;
+    transition:  all 1.2s ease-in-out;
+  }
+  .custom h1{
+    font-size: 80px;
+    transition:  all 1.2s ease-in-out;
+    
+  }
+  .custom1 h1{
+    font-size: 50px;
+    transform: translateY(-40px);
+     transition:  all 1.2s ease-in-out;
+
+  }
+  .bg-wrapper h1{
+    position: absolute;
+    top:280px;
+    left:50px;
+    color:#fff;
+    text-align: center; 
+  }
+  @media screen and (max-width: 800px) {
+      .bg-wrapper h1{
+      font-size: 40px;
+      transition:  all 0.9s ease-in-out;
+      }
+      .custom1 h1{
+        transform: translateY(-30px);
+        transition:  all 1.2s ease-in-out;
+      }
+     
+   
+  }
+  @media screen and (max-height: 400px) {
+    .bg-wrapper h1{
+      font-size: 50px;
+     transform: translate(-80px,-100px); 
+    transition:  all 0.9s ease-in-out;
+    }
+    .custom1 h1{
+
+      transform: translate(-80px,-60px);
+      transition:  all 1.2s ease-in-out;
+  
+    }
+   
+ 
+}
+ 
+  .box1{
+      
+    height:80vh;
+    width: 100%;
+    background-image: url('../assets/grid-venu4.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    
+  }
+  .box2{
+    
+    height:100vh;
+    width: 100%;
+    /* background-image: url('../assets/image2.jpg'); */
+    background-color:aquamarine;
+    /* background-attachment: fixed; */
+    
+  }
+  .box3{
+  
+    height:100vh;
+    width: 100%;
+    background-color: rgb(58, 245, 11);
+    
+  }
+  .box4{
+  
+    height:100vh;
+    width: 100%;
+    background-color: rgb(58, 245, 11);
+    /* background-image: url('../assets/image3.jpg'); */
+
+    
+  }
+  .tab-name {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   
+    top: 0px;
+    position: sticky;
+  }
+ 
+  .tab-name  li{
+    padding: 0;
+    margin:0;
+    list-style: none;
+    line-height: 50px;
+
+  
+  }
+.tab-name  li .a{
+  text-decoration: none;
+  color: #fff;
+  padding: 16px;
+  /* border-radius: 50%; */
+
+}
+.tab-name  li .a:hover{
+  border-bottom: 2px solid #000;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.5;
+/* background-color:#004d40; */
+
+}
+.tab-name  li .a.active{
+  background-color:#004d40;
+}
+
+
+.panel{
+  max-height:0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+
+}
+ 
+.isExpanded{
+  max-height: 150px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+@media screen and (max-width: 800px) {
+ 
+  .isExpanded{
+    max-height: 250px;
+    transition: max-height 0.5s ease-in-out;
+  }
+
+}
+/* .scroll{
+  height:100vh;
+  margin-top:0;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+.scroll::-webkit-scrollbar { 
+  display: none;
+} */
+
+
+
+.grid-layout img:hover{
+  transform: scale(1.05);
+  opacity: 0.9;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+
+.mid-div p  {
+  color:#004d40;
+  transition: all 1s ease-in-out;
+}
+
+.footer-wrapper{
+  background-color: #282828;
+  /* height:600px;  */
+}
+.main-footer{
+       padding: 30px;  
+     /* background-color:darkolivegreen; */
+     /* height: inherit; */
+   
+}
+.social-media{
+  /* background-color:coral; */
+  /* height: 500px; */
+  padding: 30px;
+}
+ .reservation{
+   /* background-color: aquamarine; */
+   /* height: 500px; */
+   padding: 30px;
+ }
+ 
+ .social-icons{
+   display: flex;
+   justify-content: space-around;
+ }
+ .main-footer a {
+
+  color: #fff;
+  margin: 15px 10px;
+
+
+}
+
+.toadd{
+  height:100px;
+  border-bottom: 1px solid #fff;
+}
+

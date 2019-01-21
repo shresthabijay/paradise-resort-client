@@ -5,6 +5,7 @@ import EventSection from './Event';
 import BookingSection from './Booking';
 import LocateSection from './LocateUs';
 import Page404 from '../Page404';
+import Footer from "../../Components/Footer"
 
 
 export default class Main extends Component {
@@ -15,12 +16,13 @@ export default class Main extends Component {
             <Route exact path="/" component={()=>{
               return <Redirect to="/home"/>
             }}/>
-            <Route exact path="/home" component={HomeSection}/>
-            <Route exact path="/events" component={EventSection}/>
-            <Route exact path="/booking" component={BookingSection}/>
-            <Route exact path="/locateus" component={LocateSection}/>
+            <Route  path="/home" component={HomeSection}/>
+            <Route  path="/events" component={EventSection}/>
+            <Route  path="/booking" component={BookingSection}/>
+            <Route  path="/locateus" component={LocateSection}/>
             <Route path="*" component={Page404}/>
           </Switch>
+          <Footer/>      
       </div>
     )
   }

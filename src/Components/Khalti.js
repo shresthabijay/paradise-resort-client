@@ -18,6 +18,7 @@ export default class Khalti extends Component {
             },
             onError:(error)=>{
                 this.props.onError(error)
+                console.log(this.props.amount)
             },
             onClose:()=>{
                 this.props.onClose()
@@ -29,6 +30,11 @@ export default class Khalti extends Component {
 
   componentDidMount=()=>{
     this.KahltiWidget.show({amount:this.props.amount})
+    // this.KahltiWidget.show({amount:10000})
+  }
+
+  componentWillUnmount=()=>{
+    this.KahltiWidget.hide()
   }
 
   render() {

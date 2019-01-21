@@ -5,7 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-table/react-table.css";
 import './Static/index.css'
 import './Static/animate.css'
+import './Static/event.css';
+import './Static/stuff.css';
+import "./Static/booking.css"
 import './Static/reactDatePicker.css'
+import "react-datepicker/dist/react-datepicker.css";
 import {Provider} from "react-redux"
 import store from "./store"
 

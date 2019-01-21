@@ -1,5 +1,5 @@
 import axios from "axios"
-const endpoint=""
+const endpoint="http://localhost:7000"
 
 let token=sessionStorage.getItem("paradise-admin-token")
 
@@ -83,6 +83,16 @@ export const authenticateAdmin= async function(token){
 
 export const adminLogin= async function(data){
     let url=endpoint+"/authenticate/login"
+    return axios.post(url,data)
+}
+
+export const bookingWithKhalti= async function(data){
+    let url=endpoint+"/bookings/book"
+    return axios.post(url,data)
+}
+
+export const checkRoomTypeAvailabilty= async function(data){
+    let url=endpoint+"/bookings/is-room-available"
     return axios.post(url,data)
 }
 

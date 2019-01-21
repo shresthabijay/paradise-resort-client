@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {storeToken} from "../Utils/adminAuthentication"
+import {storeToken,isAuthenticated} from "../Utils/adminAuthentication"
 import {Redirect} from "react-router-dom"
 import axios from "axios"
 import {adminLogin} from "../Utils/apis"
@@ -17,6 +17,12 @@ export default class LoginPage extends Component {
     }
     catch(err){
       this.setState({error:true,username:"",password:"",redirectToAdmin:false})
+    }
+  }
+
+  componentDidMount=()=>{
+    if(isAuthenticated()){
+      this.setState({redirectToAdmin:true})
     }
   }
 

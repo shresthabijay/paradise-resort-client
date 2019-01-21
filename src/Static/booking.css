@@ -1,0 +1,74 @@
+.booking-banner{
+    padding: 25px;
+    color: #fff;
+    /* overflow: visible;  */
+    animation-name: book;
+    animation-duration: 1s; 
+    animation-timing-function: ease-in-out; 
+}
+
+.buton{
+    position: relative;
+    top:30px;
+    
+}
+
+.bookingbarMain{
+    height:100vh;
+}
+.customs{
+    display:block;
+}
+
+
+
+@keyframes book{
+    from {transform: scaleX(0)}
+    to {transform: scaleX(1)}
+  }
+
+
+
+  .wrapper{
+    background-image: url('https://www.prideofbritainhotels.com/wp-content/uploads/2015/12/the-arch04-1920-1920x1080.jpg');
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+ 
+  }
+
+  .pannel-bar{
+      background-color: #ffffff;
+      padding: 20px 50px;
+  }
+ 
+
+
+
+  .error-field{
+       margin: 10px;
+       text-align: center;
+  }
+
+  .details{
+      border-top: 2px solid black;
+      position: sticky;
+      top:0px;
+  }
+
+  .side{
+      
+      /* background-color: aquamarine; */
+  }
+ 
+
+  @media screen and (max-width: 700px) {
+  
+    .details{
+            position: fixed;
+            top:0px;
+            z-index: 1;
+            background-color: beige;
+
+    }
+  }
