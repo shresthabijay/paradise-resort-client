@@ -1,3 +1,5 @@
+import store from "../store";
+
 const initialState={show:true,notifications:[],latestNotificationId:0}
 //{message:"",link:"",color:""}
 

@@ -66,7 +66,7 @@ class Map extends Component {
               >
                 <h3>Phone No</h3>
                 <br />
-                <h4>+977 123</h4>
+                <h4>+977-9696969696</h4>
               </div>
 
               <div
@@ -76,7 +76,7 @@ class Map extends Component {
               >
                 <h3>E-mail</h3>
                 <br />
-                <h4>FSLKJFSLDKJF@gmail.com</h4>
+                <h4>parasort7@gmail.com</h4>
               </div>
             </div>
           </div>

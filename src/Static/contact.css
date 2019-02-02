@@ -2,7 +2,6 @@
   top: 20%;
   background: url("https://images.pexels.com/photos/777211/winter-sunset-purple-sky-777211.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   overflow-x: hidden;
-  border: auto solid red;
 }
 
 .contact_map {
@@ -20,7 +19,7 @@
   padding-left: 5.5%;
   padding-right: 5.5%;
   background-color: rgb(221, 167, 17);
-  z-index:2;
+  z-index: 1;
 }
 .contact_finising {
   position: fixed;

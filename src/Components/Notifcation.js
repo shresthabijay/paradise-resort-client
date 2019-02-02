@@ -2,6 +2,7 @@ import React from "react"
 import Animate from "./Animate"
 import {connect} from "react-redux"
 import {addNotifications,removeNotifications} from "../Actions/notificationActions"
+import store from "../store";
 
 class Notification extends React.Component{
 
@@ -124,6 +125,7 @@ const mapStateToProps=(state)=>{
     })
 }
 
+
 let mapDispatchToProps=(dispatch)=>{
     return({
       removeNotifications:(notificationsData)=>{
@@ -132,7 +134,7 @@ let mapDispatchToProps=(dispatch)=>{
     })
   }
 
-  
-export default connect(mapStateToProps,mapDispatchToProps)(NotificationPanel)
 
+
+export default connect(mapStateToProps,mapDispatchToProps)(NotificationPanel)
 

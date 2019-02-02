@@ -1,5 +1,5 @@
 import axios from "axios"
-const endpoint="http://localhost:7000"
+const endpoint=""
 
 let token=sessionStorage.getItem("paradise-admin-token")
 
