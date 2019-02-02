@@ -217,6 +217,7 @@
 
 .footer-wrapper{
   background-color: #282828;
+  z-index:3;
   /* height:600px;  */
 }
 .main-footer{

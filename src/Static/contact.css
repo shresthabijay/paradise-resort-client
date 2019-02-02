@@ -1,0 +1,82 @@
+.contact {
+  top: 20%;
+  background: url("https://images.pexels.com/photos/777211/winter-sunset-purple-sky-777211.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  overflow-x: hidden;
+  border: auto solid red;
+}
+
+.contact_map {
+  position: relative;
+}
+.contact_text {
+  position: absolute;
+
+  top: 17%;
+  left: 0.75%;
+  border: 2%;
+  border-color: black;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5.5%;
+  padding-right: 5.5%;
+  background-color: rgb(221, 167, 17);
+  z-index:2;
+}
+.contact_finising {
+  position: fixed;
+  height: 80%;
+  top: 50%;
+
+  z-index: 3;
+}
+
+.contact_foreground {
+  top: 30%;
+  width: 100%;
+  height: 80%;
+  position: relative;
+
+  /* background-color: #66dac7; */
+  z-index: 2;
+}
+/* Bottom left text */
+.bottom-left {
+  position: absolute;
+  bottom: 30%;
+  color: white;
+  left: 5%;
+}
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  color: white;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 60%;
+  right: 7%;
+  color: white;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  color: white;
+  bottom: 40%;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  color: white;
+  top: 60%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+/* background-image: url("./tropical.png"); */

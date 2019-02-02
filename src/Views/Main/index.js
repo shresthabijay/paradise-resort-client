@@ -50,7 +50,7 @@ class Main extends Component {
 
   render() {
     const move = (this.props.navState.menuDisplay === 'true')? " moveDown " : "";
-    const linkObj = [{url:'/home',name:'Home'},{url:'/booking',name:'Booking'},{url:'/events',name:'Events'},{url:'/Locate-us',name:'Locate Us'}]
+    const linkObj = [{url:'/home',name:'Home'},{url:'/booking',name:'Booking'},{url:'/events',name:'Events'},{url:'/locateus',name:'Locate Us'}]
     return (
       <div>
           <Nav 
