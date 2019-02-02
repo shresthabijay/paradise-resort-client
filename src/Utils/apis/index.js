@@ -33,12 +33,12 @@ export const addRoomType= async function(data){
 }
 
 export const getEvents= async function(){
-    let url=endpoint+"/events/get/all"
+    let url=endpoint+"/eventapi/get/all"
     return axios.get(url)
 }
 
 export const addEvent= async function(data){
-    let url=endpoint+"/events/add"
+    let url=endpoint+"/eventapi/add"
     return axios.post(url,data)
 }
 
@@ -95,13 +95,3 @@ export const checkRoomTypeAvailabilty= async function(data){
     let url=endpoint+"/bookings/is-room-available"
     return axios.post(url,data)
 }
-
-
-
-
-
-
-
-
-
-

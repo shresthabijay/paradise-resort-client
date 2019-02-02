@@ -22,7 +22,6 @@ let mapDispatchToProps=(dispatch)=>{
 
 class BookingForm extends React.Component{
 
-
   shouldComponentUpdate=(nextProps,nextState)=>{
     return false
   }

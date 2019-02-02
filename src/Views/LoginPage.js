@@ -3,7 +3,7 @@ import {storeToken,isAuthenticated} from "../Utils/adminAuthentication"
 import {Redirect} from "react-router-dom"
 import axios from "axios"
 import {adminLogin} from "../Utils/apis"
-
+import bg from '../assets/butta.png'
 export default class LoginPage extends Component {
 
   state={error:false,username:"",password:"",redirectToAdmin:false}
@@ -37,7 +37,7 @@ export default class LoginPage extends Component {
       return <Redirect to="/admin"/>
     }
     return (
-      <div className="login-main conatiner-fluid">
+      <div className="login-main conatiner-fluid" style={{backgroundImage:{bg}}}>
         <div className="row d-flex justify-content-center align-items-center" style={{height:"100%",margin:"0",padding:"25px"}}>
           <div className="card z-index-l col-lg-3 col-md-4 col-sm-8 login-portal">
             <div className="login-header p-2">Login</div>

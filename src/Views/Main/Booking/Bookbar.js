@@ -1,13 +1,17 @@
 import React from 'react'
 import DatePicker from "react-datepicker";
+import {withRouter} from "react-router-dom"
  
 
 class Bookbar extends React.Component{
     constructor(){
         super();
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        window.scrollTo(0,0)
         this.state={
              checkIn:new Date(),
-            checkOut:new Date(),
+            checkOut:tomorrow,
             adults:1,
             children:0,
         }
@@ -31,13 +35,13 @@ class Bookbar extends React.Component{
         })
        }
        onhandleClick=()=>{
-        this.props.history.push('/service', { checkIn:this.state.checkIn,checkOut:this.state.checkOut,adults:this.state.adults,children:this.state.children })
+        this.props.history.push('/booking', { checkIn:this.state.checkIn,checkOut:this.state.checkOut,adults:this.state.adults,children:this.state.children })
        }
 
     render(){
         return(
-            <div className="container bookingbarMain">
-             <div className="booking-banner" style={{backgroundColor:'rgba(48,41,57)'}}> 
+            <div className="bookingbarMain">
+             <div className="booking-banner" style={{backgroundColor:'rgb(42, 51, 63)'}}> 
             
             <div className="row ">
             <div className=" col-sm-12 col-md-12 col-lg-3 mb-md-2 mr-lg-2 mb-sm-3">
@@ -108,4 +112,4 @@ class Bookbar extends React.Component{
     }
 }
 
-export default Bookbar
+export default withRouter(Bookbar)

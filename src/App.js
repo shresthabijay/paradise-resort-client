@@ -5,14 +5,13 @@ import Main from './Views/Main';
 import Authentication from "./Components/Authentication"
 import LoginPage from './Views/LoginPage';
 
-
 class App extends Component {
+  
   render() {
     return (
       <Router>
         <div className="App">
           <Switch>
-          
             <Route path="/admin" component={
               ()=>{
                 return (
@@ -25,8 +24,8 @@ class App extends Component {
           
             <Route exact path="/admin-login" component={LoginPage}/>
             <Route path="/" component={Main}/>
-          </Switch>        
-        </div>
+          </Switch>  
+          </div>    
       </Router>
     );
   }

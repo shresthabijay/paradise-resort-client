@@ -6,8 +6,6 @@ import bg1 from "../../assets/image1.jpg"
 import bg2 from "../../assets/image2.jpg"
 import bg3 from "../../assets/image3.jpg"
 
-
-
 class Slider extends Component {
     constructor(props) {
        
@@ -75,7 +73,6 @@ class Slider extends Component {
                 return {currentIndex:0}
             })
         }  
-         
     }
 
     componentWillUnmount(){
@@ -87,7 +84,7 @@ class Slider extends Component {
             this.setState(prevState=>{
                 return {currentIndex:prevState.currentIndex-1}
             })
-        }    
+        }
     }
 
     dotClickHandler=(index)=>{
@@ -102,8 +99,6 @@ class Slider extends Component {
         this.setState(prevState=>({height:h,width:w}))
         console.log(w)
     }
-
-   
 
     render() {
        

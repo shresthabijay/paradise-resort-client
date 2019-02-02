@@ -1,11 +1,3 @@
-import React, { Component } from 'react'
+import Home from './HomeView'
 
-export default class HomeSection extends Component {
-  render() {
-    return (
-      <div>
-        Home Section
-      </div>
-    )
-  }
-}
+export {Home};

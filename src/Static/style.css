@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Ubuntu:300,400,500,700|Coiny');
+
+@font-face {
+	font-family: 'BAUHS93';
+    src: url('../fonts/BAUHS93/BAUHS93.eot') ,url('../fonts/BAUHS93/BAUHS93.woff') format('woff'), url('../fonts/BAUHS93/BAUHS93.ttf') format('truetype');
+    font-weight: 100;
+}
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+button .btn{
+    font-size: 2rem;
+}
+.body{
+    position: relative;
+    transition: all ease-in-out 400ms;
+    width:100%;
+}
+.moveDown{
+    transform: translateY(6em);
+}

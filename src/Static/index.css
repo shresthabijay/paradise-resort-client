@@ -137,7 +137,7 @@
 
 .login-main{
     height: 100vh;
-    background-color: #7d8ca3;
+  background-image: url('../assets/butta.png')  /* background-color: #7d8ca3; */
 }
 
 .login-portal{

@@ -15,7 +15,7 @@ import Setting from './Pages/Setting';
 class Admin extends Component {
 
   componentDidMount=()=>{
-    this.props.addNotifications([{message:"Welcome Admin!",color:"success"},{message:"Madarjat kam gar!",color:"info"}])
+    this.props.addNotifications([{message:"Welcome Admin!",color:"success"}])
   }
 
   render() {

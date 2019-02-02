@@ -10,6 +10,8 @@ import './Static/stuff.css';
 import "./Static/booking.css"
 import './Static/reactDatePicker.css'
 import "react-datepicker/dist/react-datepicker.css";
+import "./Static/loader.css"
+// import "./Static/bootstrap3.css"
 import {Provider} from "react-redux"
 import store from "./store"
 

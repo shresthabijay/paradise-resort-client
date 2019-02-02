@@ -28,6 +28,8 @@ import room3 from '../../../assets/room3.jpg'
 class Design extends React.Component{
     constructor(){
         super();
+
+        window.scrollTo(0,0)
         this.state={
             classforheader:'',
             images:[img5,img6,img7,img8,img9,food1,food2,food3,room1,room2,room3,place1,place2,place3],

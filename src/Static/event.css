@@ -7,11 +7,10 @@
 
 *{
   font-family: 'Oxygen', sans-serif;
+  font-size: '20px'
   
 }
-body{
-  overflow-x: hidden;
-}
+
 .event-data{
   transform: translateY(0px);
   transition: all 0.3s ease-in-out;

@@ -46,7 +46,9 @@ class RoomSelection extends React.Component{
                                
             }
           this.setState({roomData}) 
-          this.props.setLoader(false)    
+          this.props.afterSearchLoad()   
+          this.props.setLoader(false) 
+          
         }
         catch(err){
 
@@ -104,7 +106,7 @@ class RoomSelection extends React.Component{
                                 <img src={data.img_src} className="card-img-top" alt="..." style={{width:'100%'}}/> 
                                 <div className="mid-sec" style={{backgroundColor:'#f5f5f5',padding:'10px'}}>
                                 <div className="row">
-                                <div className="col-lg-10 col-sm-12 mb-sm-2">
+                                <div className="col-lg-10 col-sm-12 mb-sm-2 mb-xs-2">
                                    {/* <i className="material-icons" style={{fontSize:'20px'}}>compare</i> */}
                                 <select className="custom-select" id={data.name} style={{width:'50%'}} onChange={this.roomOptionChangeHandler}>
                                     {data.room_types.map(d=>{
@@ -113,26 +115,34 @@ class RoomSelection extends React.Component{
                                 </select>
                    
                                 </div>
-                                <div className="col-lg-2 col-sm-12 mb-sm-2">
+                                {/* <div className="col-lg-2 col-sm-12 mb-sm-2 mb-xs-2">
                                 <button className="btn btn-outline-secondary">See Details</button>
-                                </div>
+                                </div> */}
                                 </div>
                                 
                                 </div>
                                    <div className="footer" style={{padding:'10px'}}>
                                    <div className="row">
                                    
-                                   <div className="col-lg-10" style={{color:'#000'}}>
-                                   <h4>Available Rates</h4>
-                                   <i className="material-icons" style={{fontSize:'12px',marginRight:'10px'}}>close</i>
-                                   <p style={{display:'inline-block',marginRight:'20px'}}>Breakfast Not Included</p>
-                                   <i className="material-icons"style={{fontSize:'12px',marginRight:'10px'}}>check</i>
-                                   <p style={{display:'inline-block',marginRight:'20px'}}>Cancellable,Modifiable</p>
-                                   <i className="material-icons"style={{fontSize:'12px',marginRight:'10px'}}>devices</i>
-                                   <p style={{display:'inline-block',marginRight:'20px'}}>Payement</p>
+                                   <div className="col-lg-10 recent" style={{color:'#000'}}>
+                                   <h4 style={{color:'teal'}}>Available Rates</h4>
+                                   <div className="row">
+                                   <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                   <i className="material-icons" style={{fontSize:'20px',marginRight:'10px',display:"block",fontWeight:'bold'}}>close</i>
+                                   <p style={{display:'inline-block',marginRight:'20px',color:'gray'}}>Breakfast Not Included</p>
+                                   </div>
+                                   <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                   <i className="material-icons"style={{fontSize:'20px',marginRight:'10px',display:"block",fontWeight:'bold'}}>check</i>
+                                   <p style={{display:'inline-block',marginRight:'20px',color:'gray'}}>Cancellable,Modifiable</p>
+                                   </div>
+                                   <div className="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                   <i className="material-icons"style={{fontSize:'20px',marginRight:'10px',display:"block",fontWeight:'bold'}}>devices</i>
+                                   <p style={{display:'inline-block',marginRight:'20px',color:'gray'}}>Payement</p>
+                                   </div>
+                                   </div>
                                    </div>
        
-                                   <div className="col-lg-2">
+                                   <div className="col-lg-2 recent1">
                                    <h3>${this.state.roomData[i].selectedRoomType?this.state.roomData[i].selectedRoomType.price_per_night:""}</h3>
                                    <button className="btn btn-warning" id={data.name} onClick={this.handleRoomSelect}>Select</button>
                                    </div>

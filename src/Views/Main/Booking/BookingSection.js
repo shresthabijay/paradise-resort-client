@@ -9,6 +9,9 @@ class BookingSection extends React.Component{
     constructor(){
         super();
 
+        this.bookbarRef=React.createRef()
+
+        window.scrollTo(0,0)
         var tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -16,7 +19,7 @@ class BookingSection extends React.Component{
             checkIn:new Date(),
             checkOut:tomorrow,
             no_of_rooms:1,
-            isdisabled:false,
+            // isdisabled:false,
             searching:null,
             price:0,
             add:false,
@@ -30,7 +33,8 @@ class BookingSection extends React.Component{
                     name:null,
                     price:0,
                     img_src:null,
-                    error:null
+                    error:null,
+                    isdisabled:true
                 }
          
         }
@@ -42,11 +46,13 @@ class BookingSection extends React.Component{
             this.setState({
                 add:true,
                 addanimation:true,
-                isdisabled:true,
+               room_type:{
+                   isdisabled:true
+               }
                 
            
             })
-
+            
             try{
                 let res=await checkRoomTypeAvailabilty({room_type_id:id})
 
@@ -59,7 +65,8 @@ class BookingSection extends React.Component{
                         price:price,
                         img_src:img_src,
                         removeanimation:false,
-                        isdisabled:false
+                        isdisabled:false,
+                        detail:{message:"Available",err:false}  
                     }
                 })
   
@@ -76,23 +83,24 @@ class BookingSection extends React.Component{
                         img_src:img_src,
                         removeanimation:false,
                         isdisabled:true,
-                        error:"Room currently N/A"       
+                        detail:{message:"Room N/A",err:true}  
                     }
                 })
 
-            }
-
-
-                
-    
+            }   
     }
 
     
+    afterSearchLoad=()=>{
+        window.scrollTo(0,this.bookbarRef.current.offsetTop)
+    }
 
     removeRoom=()=>{
         this.setState({
             removeanimation:true,
-            isdisabled:false,
+            room_type:{
+                isdisabled:false
+            }
             
         })
         setTimeout(()=>{
@@ -104,11 +112,12 @@ class BookingSection extends React.Component{
                     name:null,
                     price:0,
                     img_src:null,
+                    isdisabled:true
 
                 }
             })
             
-        },1000)
+        },500)
     }
     onHandleChange=(e)=>{
         this.setState({
@@ -140,7 +149,7 @@ class BookingSection extends React.Component{
        }
 
        setLoader=(flag)=>{
-            this.setState({searching:false,showRoomSelection:true})
+            this.setState({searching:false,showRoomSelection:true,searchDisable:true})
        }
 
    
@@ -198,7 +207,7 @@ class BookingSection extends React.Component{
             price_per_night:this.state.room_type.price
         }
         
-        this.props.history.push('/booking/payment',{bookData:bookdata})
+        this.props.history.push('/booking/payment',{bookData:bookdata,id:"payment"})
 
     }
    
@@ -226,10 +235,10 @@ class BookingSection extends React.Component{
         return(
             
             <div className="">
-                <div className="wrapper">
+                <div className="wrapper" style={{height:"80vh"}}>
                 </div>
 
-                <div className="pannel-bar">
+                <div className="pannel-bar" ref={this.bookbarRef}>
 
                 <div className="row item">
                 <div className=" col-sm-12 col-md-12 col-lg-3 mb-md-2 mr-lg-2 mb-sm-3">
@@ -307,7 +316,7 @@ class BookingSection extends React.Component{
             </div>
             <div className="error-field">
         
-             <button disabled={this.dateValidation(this.state.checkIn,this.state.checkOut)} type="button" className="btn btn-secondary btn-block" onClick={this.search}>Search</button>  
+             <button disabled={this.dateValidation(this.state.checkIn,this.state.checkOut) || this.state.searchDisable } type="button" className="btn btn-secondary btn-block" onClick={this.search}>Search</button>  
 
                 {this.dateValidation(this.state.checkIn,this.state.checkOut) &&  <p style={{color:'red',margin:'10px'}}>Invalid CheckIn and CheckOut Time</p>}
 
@@ -321,9 +330,9 @@ class BookingSection extends React.Component{
 
                  {this.state.searching===false && 
                 
-                <div className="col-sm-12 col-lg-3 order-last">
+                <div className="col-sm-12 col-lg-3 order-last ">
                
-                <div className="card details" >
+                <div className=" details1" >
                 {spinner1}
                 <div className="card-body">
                     <h5 className="card-title">
@@ -331,8 +340,8 @@ class BookingSection extends React.Component{
                     </h5>
                     <hr/>
 
-                    <p style={{fontSize:'14px',color:this.state.room_type.error?"red":"green"}}>Details:
-                        &nbsp; {this.state.room_type.error?this.state.room_type.error:"Available"}
+                    <p style={{fontSize:'14px',color:this.state.room_type.detail?this.state.room_type.detail.err?"red":"green":""}}>Details:
+                        &nbsp; {this.state.room_type.detail && this.state.room_type.detail.message}
                     </p>
                     <hr className="my-1"/>
                    {this.state.add===false && <p className="card-text" style={{textAlign:'center',fontSize:'25px'}}>Select Room Category!</p>}
@@ -356,7 +365,7 @@ class BookingSection extends React.Component{
                     <button className="btn btn-danger" onClick={this.removeRoom}>Remove</button>
                     </div>
                     <div className="col-lg-6">
-                    <button disabled={!this.state.isdisabled || this.dateValidation(this.state.checkIn,this.state.checkOut) || this.state.room_type.error } onClick={this.onproceed} className="btn btn-outline-success">Proceed</button>
+                    <button disabled={this.state.room_type.isdisabled || this.dateValidation(this.state.checkIn,this.state.checkOut) || this.state.room_type.error } onClick={this.onproceed} className="btn btn-outline-success">Proceed</button>
 
                     </div>
                     {this.dateValidation(this.state.checkIn,this.state.checkOut) && <p style={{color:'red',textAlign:'center'}}>Please correct the date of arrival and departure </p>}
@@ -368,12 +377,39 @@ class BookingSection extends React.Component{
 
                 {(this.state.showRoomSelection || this.state.searching) && 
                     <div className="col-sm-12 col-lg-9 order-first">
-                        <RoomSelection setLoader={this.setLoader} addRoom={this.addRoom}/>
+                        <RoomSelection afterSearchLoad={this.afterSearchLoad} setLoader={this.setLoader} addRoom={this.addRoom}/>
                     </div>
                 }
                     
                     </div>
                 </div>
+              {this.state.searching===false && <div className="mini-details ">
+                        <div className="row">
+                        <div className="col-8 " >
+                        <div className="main-details" style={{paddingLeft:'25px'}}>
+                        <div className="flex1" >
+                            <p style={{color:"#fff"}}>Total: </p>
+                            <p>${this.state.room_type.price}</p>
+                        </div>
+                        <div className="flex1">
+                            <p style={{color:"#fff"}}>Type: </p>
+                            <p>{this.state.room_type.name}</p>
+                            </div>
+                        <div className="flex1">
+                            <p style={{color:"#fff"}}>Details</p>
+                            <p style={{fontSize:'14px',color:this.state.room_type.detail?this.state.room_type.detail.err?"red":"green":""}}
+                            >{this.state.room_type.detail && this.state.room_type.detail.message}
+                            </p>
+                        </div>
+                        
+                        </div>
+                        </div>
+                        <div className="col-4" style={{paddingTop:'8px'}}>
+                                <button disabled={this.state.room_type.isdisabled || this.dateValidation(this.state.checkIn,this.state.checkOut) || this.state.room_type.error } onClick={this.onproceed} className="btn btn-primary " >Proceed </button>
+                        </div>
+                        </div>
+                    
+                    </div>}
                 
             </div>
         )

@@ -15,11 +15,11 @@ const Footer =()=>{
                   
                    <div className="social-icons" >
                     <a href="https://www.instagram.com/" ><i className="fab fa-instagram" style={{fontSize:'25px'}}></i></a>
-                    <a href="www.instagram.com" ><i className="fab fa-facebook" style={{fontSize:'25px'}}></i></a>
-                    <a href="www.instagram.com" ><i className="fab fa-google" style={{fontSize:'25px'}}></i></a>
-                    <a href="www.instagram.com" ><i className="fab fa-twitter" style={{fontSize:'25px'}}></i></a>
-                    <a href="www.instagram.com" ><i className="fab fa-youtube" style={{fontSize:'25px'}}></i></a>
-                    <a href="www.instagram.com" ><i className="fab fa-google-plus" style={{fontSize:'25px'}}></i></a>
+                    <a href="https://www.facebook.com/" ><i className="fab fa-facebook" style={{fontSize:'25px'}}></i></a>
+                    <a href="https://plus.google.com/discover/" ><i className="fab fa-google" style={{fontSize:'25px'}}></i></a>
+                    <a href="https://www.twitter.com/" ><i className="fab fa-twitter" style={{fontSize:'25px'}}></i></a>
+                    <a href="https://www.youtube.com/" ><i className="fab fa-youtube" style={{fontSize:'25px'}}></i></a>
+                    {/* <a href="https://www.instagram.com/" ><i className="fab fa-google-plus" style={{fontSize:'25px'}}></i></a> */}
 
                     </div>
                 </div>
@@ -68,9 +68,9 @@ const Footer =()=>{
              
                 
                 </div>
-                </div>
-                <div className="end" style={{backgroundColor:'#000'}}>
-                    <h4 style={{textAlign:'center'}}> &copy; 2019 Paradise Resort</h4>
+                    <div className="end" style={{backgroundColor:'',color:"gray"}}>
+                        <h4 style={{textAlign:'center'}}> &copy; 2019 Paradise Resort</h4>
+                    </div>
                 </div>
         </div>
     )

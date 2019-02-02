@@ -1,0 +1,69 @@
+.slideshow{
+    background: rgba(68, 70, 68, 0.137);
+}
+.component-p2{
+    padding:0;
+    height: 400px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.component-p1{
+    height:400px;
+    padding: 0;
+}
+.component-name{
+    font-family: 'Ubuntu';
+    font-weight: 700;
+    font-size: 30px;
+    padding: 10px;
+}
+.component-desc{
+    font-family: 'Roboto';
+    font-weight: 400;
+    padding: 0 40px;
+}
+.rel{
+    position: relative;
+}
+.abs{
+    position: absolute;
+}
+.room-type{
+    font-family: 'Ubuntu';
+    font-weight: 600;
+    font-size: 25px;
+    padding: 10px;
+    color: white;
+    background: black;
+    top:40px;
+    left: 0px;
+}
+.room-desc{
+    font-family: 'Roboto';
+    font-weight: 500;
+    padding: 0 40px;
+    top: 55px;  
+}
+.carousel-image{
+    height:400px
+}
+@media only screen and (max-width:767px){
+    .component-p1{
+        height:350px
+    }   
+    .carousel-image{
+        height: 350px;
+    }
+    .component-p2{
+        height:300px;
+    }
+}
+
+@media only screen and (max-width:363px){
+    .component-p2{
+        height: 350px;
+    }
+}

@@ -3,14 +3,21 @@ import KahltiWidget from "../../../Components/Khalti.js"
 import {Formik}from "formik"
 import * as Yup from 'yup'
 import {bookingWithKhalti} from "../../../Utils/apis"
+import {Redirect} from "react-router-dom"
 
 export default class PayementSection extends Component {
 
   state={showKhaltiWidget:false,bookData:null,khaltiToken:null,bookingSuccess:false}
 
   componentWillMount=()=>{
-      this.setState({bookData:{...this.props.location.state.bookData}})
       window.scrollTo(0,0)
+
+      if(!this.props.location.state){
+        this.props.history.push("/booking")
+        return 
+      }
+
+      this.setState({bookData:{...this.props.location.state.bookData}})
   }
 
   render() {
@@ -20,7 +27,13 @@ export default class PayementSection extends Component {
         email:Yup.string().email("Please enter a valid email").required("Email"),
         phone:Yup.number().positive().required().label("Phone no")
     })
-    console.log("lol",this.state)
+
+    if(!this.props.location.state){
+      this.props.history.push("/booking")
+      return (<Redirect to="/booking"/>)
+  }
+
+
     return(
 
         <div className="login-main">
@@ -29,7 +42,7 @@ export default class PayementSection extends Component {
              <div className="login-header p-2">Guest Credential and Payement</div>
              <Formik
           onSubmit={async (values, { setSubmitting,resetForm, }) => {
-            this.setState({userData:values,showKhaltiWidget:true})
+            this.setState({userData:values,showKhaltiWidget:true,showButtonLoader:true})
           }}
 
           validationSchema={validationSchema}
@@ -40,6 +53,7 @@ export default class PayementSection extends Component {
   
           render={({errors,handleChange,handleSubmit,setFieldValue,values}) => (
             <div style={{height:"100%"}}>
+                {this.state.showFullScreenLoader && <div className="loading">Loading&#8230;</div>}
                 <form onSubmit={handleSubmit} className="p-4" onScroll={()=>{}}>
                   <div className="form-group">
                     <label>Name:</label>
@@ -66,6 +80,7 @@ export default class PayementSection extends Component {
               <div className="mb-2">                  
                     <div className="d-flex justify-content-center">
                       <button type="submit" onClick={e=>{handleSubmit(e)}} className="btn btn-info">
+                        {this.state.showButtonLoader && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
                         Proceed
                       </button>
                     </div>
@@ -84,6 +99,8 @@ export default class PayementSection extends Component {
           productIdentity={this.state.bookData.room_id}
           productUrl="www.paradise.com"
           onSuccess={(payload)=>{
+
+            this.setState({showFullScreenLoader:true})
             let {userData,bookData}=this.state
             let data={
               "address":userData.address,
@@ -97,12 +114,12 @@ export default class PayementSection extends Component {
               "food_service":bookData.food_service || 0
             }
 
-            console.log(data)
-
             bookingWithKhalti(data).then((res)=>{
-              alert("booking successfull")
-              this.props.history.push("/booking-info")
-              console.log(res.data)
+
+              let resData=res.data
+
+              this.props.history.push("/booking/bookinginfo",{data,resData})
+              
             }).catch((err)=>{
               console.log(err)
 
@@ -113,7 +130,7 @@ export default class PayementSection extends Component {
             alert("You dont have enough balance in this account")
           }}
           onClose={()=>{
-            this.setState({showKhaltiWidget:false})
+            this.setState({showKhaltiWidget:false,showButtonLoader:false})
           }}
         />
         }
